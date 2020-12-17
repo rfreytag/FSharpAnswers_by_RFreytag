@@ -2,8 +2,6 @@
 
 open System
 
-// I have the following types in F#:
-
 type Name = string
 type Sex = 
     | M // male
@@ -25,10 +23,6 @@ let family_example = [Person("Larry",M,1920,
                              ]
                          )]
 
-(*My task is to create a function: find: Name -> FamilyTree -> returns (found name, sex, year, [List of the names of all their children]
-
-I know it has something to do with mutual recursion but I am not sure how to apply it. This is what I wrote so far:*)
-
 let rec find name ( familyTree_list : FamilyTree list) : FamilyTree =
     match familyTree_list with
     | (Person( try_name, _, _, _)::_) & (person::_) when name = try_name -> person 
@@ -37,20 +31,6 @@ let rec find name ( familyTree_list : FamilyTree list) : FamilyTree =
         if Nothing <> depth_search_result then depth_search_result
         else find name siblings
     | _ -> Nothing
-
-(*When I run
-
-find "May" f1;;
-
-I get:
-
-error FS0001: This expression was expected to have type
-    'Name * Sex * YearOfBirth * Name list'
-but here has type
-    ''a list'
-
-Does anyone know what I am doing wrong? I know there is a problem with types but I am not sure how to fix it. I could use all the help I could get, thank you very much!*)
-
 
 [<EntryPoint>]
 let main argv =
